@@ -1,49 +1,40 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import theme from './src/styles/theme';
+import imc from './src/components/imc/imc'
+import ola from './src/components/ola/ola';
 
-interface OlaProps {
-    nomeProps:string
-}
 
-const Ola : React.FC<OlaProps> = ({nomeProps}) => {
-
-    const [contadorLikes, setContadorLikes] = useState<number>(0);
-
-    const incrementarContador = () =>  setContadorLikes(contadorLikes + 1);
-
-    const reduzirContador = () =>  setContadorLikes(contadorLikes - 1);
-    return (
-    <View style={styles.container}>
-          <Text style={styles.greeting}>
-            Olá {nomeProps}
-            seu total de é Likes {contadorLikes}
-            </Text>
-
-        <Button
-          title="Like"         
-          onPress={incrementarContador}
-          color="blue"
-        />
-        <Button
-          title="Deslike"         
-          onPress={reduzirContador}
-          color="red"
-        />
-    </View>
-    );
-}
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    greeting: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      margin: 16,
-    },
-  });
-  
-  export default Ola;
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text:{
+    fontSize:24
+  },
+  textInput:{
+    borderColor: theme.colors.red,
+    borderWidth: 1,
+    borderRadius: 5,
+    fontSize: 24,
+    width:300,
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  button: {
+    backgroundColor: theme.colors.blue,
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: theme.colors.white,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});

@@ -1,0 +1,9 @@
+{
+    "usuario": [
+      {
+        "id": 1,
+        "nome": "Hambúrguer",
+        "senha": "123"
+      }
+    ]
+}

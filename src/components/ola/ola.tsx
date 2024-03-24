@@ -11,6 +11,7 @@ const Ola : React.FC<OlaProps> = ({nomeProps}) => {
 
     const incrementarContador = () =>  setContadorLikes(contadorLikes + 1);
 
+    const reduzirContador = () =>  setContadorLikes(contadorLikes - 1);
     return (
     <View style={styles.container}>
           <Text style={styles.greeting}>
@@ -22,6 +23,11 @@ const Ola : React.FC<OlaProps> = ({nomeProps}) => {
           title="Like"         
           onPress={incrementarContador}
           color="blue"
+        />
+        <Button
+          title="Deslike"         
+          onPress={reduzirContador}
+          color="red"
         />
     </View>
     );

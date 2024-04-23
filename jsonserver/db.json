@@ -1,9 +1,133 @@
 {
-    "usuario": [
-      {
-        "id": 1,
-        "nome": "Hambúrguer",
-        "senha": "123"
-      }
-    ]
+  "User": [
+    {
+      "id": 1,
+      "username": "h1",
+      "password": "123",
+      "photo": "teste.png"
+    },
+    {
+      "id": 2,
+      "username": "Lo",
+      "password": "123",
+      "photo": "teste.png"
+    },
+    {
+      "id": 3,
+      "username": "h3",
+      "password": "321",
+      "photo": "teste.png"
+    },
+    {
+      "id": "64db",
+      "username": "Teste",
+      "password": "password",
+      "photo": "file:///var/mobile/Containers/Data/Application/A1F9F1E6-6843-40EC-A824-000866CEB410/Library/Caches/ExponentExperienceData/@anonymous/my-app-c7373b2b-fd99-4c4c-9414-d9123e60e0f8/ImagePicker/11FE4C45-90EE-4958-A0ED-09DAE4E2799B.jpg"
+    },
+    {
+      "id": "00d4",
+      "username": "Teste",
+      "password": "123",
+      "photo": "file:///var/mobile/Containers/Data/Application/A1F9F1E6-6843-40EC-A824-000866CEB410/Library/Caches/ExponentExperienceData/@anonymous/my-app-c7373b2b-fd99-4c4c-9414-d9123e60e0f8/ImagePicker/11FE4C45-90EE-4958-A0ED-09DAE4E2799B.jpg"
+    },
+    {
+      "id": "2822",
+      "username": "123",
+      "password": "123",
+      "photo": ""
+    },
+    {
+      "id": "6bcb",
+      "username": "123",
+      "password": "123"
+    },
+    {
+      "id": "cb4f",
+      "username": "123",
+      "password": "123"
+    },
+    {
+      "id": "99b3",
+      "username": "",
+      "password": "",
+      "photo": ""
+    },
+    {
+      "id": "152f",
+      "username": "Teste2",
+      "password": "ussue",
+      "photo": ""
+    },
+    {
+      "id": "892e",
+      "username": "Teste2",
+      "password": "ussue",
+      "photo": ""
+    },
+    {
+      "id": "8c69",
+      "username": "Teste2",
+      "password": "ussue",
+      "photo": ""
+    },
+    {
+      "id": "3310",
+      "username": "Teste2",
+      "password": "ussue",
+      "photo": ""
+    },
+    {
+      "id": "677b",
+      "username": "Teste2",
+      "password": "ussue",
+      "photo": ""
+    }
+  ],
+  "Group": [
+    {
+      "id": 1,
+      "name": "teste1",
+      "quantidade": "1",
+      "valor": "3",
+      "descricao": "teste",
+      "data": "23/04/2024",
+      "photo": "teste.png"
+    },
+    {
+      "id": 2,
+      "name": "teste2",
+      "quantidade": "2",
+      "valor": "5",
+      "descricao": "teste",
+      "data": "23/04/2024",
+      "photo": "teste.png"
+    },
+    {
+      "id": 3,
+      "name": "teste3",
+      "quantidade": "3",
+      "valor": "4",
+      "descricao": "teste",
+      "data": "23/04/2024",
+      "photo": "teste.png"
+    },
+    {
+      "id": "5f26",
+      "name": "teste4",
+      "quantidade": 4,
+      "valor": 4,
+      "descricao": "t",
+      "data": "",
+      "photo": ""
+    },
+    {
+      "id": "217c",
+      "name": "teste4",
+      "quantidade": 10,
+      "valor": 60,
+      "descricao": "Testeee",
+      "data": "",
+      "photo": ""
+    }
+  ]
 }

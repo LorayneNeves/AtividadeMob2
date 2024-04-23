@@ -1,0 +1,41 @@
+import { TextInputProps } from 'react-native';
+import { Container, InputPassword2, IconEye } from './style'; // Supondo que este seja o arquivo onde você definiu os componentes estilizados Input e Title
+import React, { useState } from 'react';
+
+interface PasswordProps  extends TextInputProps {
+ 
+}
+
+
+const PassWordInput2 = ({ ...rest } : PasswordProps) => {
+
+  const eye  = 'eye';
+  const eyeOff = 'eye-off';
+
+  const [iconPass, setIconPass] =  useState<'eye' | 'eye-off'>(eyeOff);
+  const [flShowPass, setShowPass] =  useState<boolean>(true);
+
+  function handleChangeIcon() {
+    let icone: 'eye' | 'eye-off' = iconPass === eye ? eyeOff : eye;
+    let flShowPassAux = !flShowPass;
+    setShowPass(flShowPassAux);
+    setIconPass(icone);
+}
+  return (
+    <Container>
+      <InputPassword2 {...rest}  
+      secureTextEntry={flShowPass}
+      />
+     <IconEye             
+                name={iconPass}
+                size={28}                
+                onPress={handleChangeIcon}
+
+      />
+
+    </Container>
+      
+  );
+};
+
+export default PassWordInput2;

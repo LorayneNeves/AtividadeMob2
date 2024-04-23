@@ -1,8 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
-import { User } from './types';
-const BASE_URL = 'https://localhost:7217/api/User/'//'http://localhost:3000/User/';
+import { User } from '../types/types';
+import { Image } from 'react-native';
 
-class UserService {
+const BASE_URL = 'http://192.168.1.9:3000/User';//'https://localhost:7217/api/User/'
+
+class userService {
 
     constructor() {
         // Se necessário, adicione inicializações aqui
@@ -10,7 +12,7 @@ class UserService {
 
   async addUser(user: User): Promise<boolean> {
     try {
-    //  const response = await axios.post(`${BASE_URL}`, user);
+    const response = await axios.post(`${BASE_URL}`, user);
     
     const formData = new FormData();
     formData.append('username', user.username);
@@ -22,7 +24,7 @@ class UserService {
 
     formData.append('photo', blob, 'photo.jpg');
 
-    const uploadResponse = await axios.post(BASE_URL+'addUser', formData, {
+    const uploadResponse = await axios.post(BASE_URL + '/addUser', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -32,6 +34,7 @@ class UserService {
     
     } catch (error) {
       console.error('Erro ao adicionar usuário:', error);
+      console.log('erro');
       return false; // Retorna false em caso de erro
     }
   }
@@ -50,6 +53,30 @@ class UserService {
       return false; // Retorna false em caso de erro
     }
   }
+
+  async getUserById(userId: number): Promise<User> {
+    try {
+        const response: AxiosResponse<User> = await axios.get(`${BASE_URL}?id=${userId}`);             
+        return response.data;
+    } catch (error) {
+        console.error('Erro ao buscar usuário pelo ID:', error);
+        return { id: 0, username: '', password: '' } ;
+    }
+
 }
 
-export default  UserService;
+  async getAllUsers(): Promise<User[]> {
+    try {
+      const response = await axios.get(`${BASE_URL}`);
+      return response.data;
+      
+    } catch (error) {
+        console.error('Erro ao buscar usuário pelo ID:', error);
+        return null;
+    }
+
+  }
+
+}
+
+export default userService;

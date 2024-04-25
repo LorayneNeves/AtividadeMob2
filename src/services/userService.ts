@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { User } from '../types/types';
 import { Image } from 'react-native';
 
-const BASE_URL = 'http://192.168.1.9:3000/User';//'https://localhost:7217/api/User/'
+const BASE_URL = 'http://192.168.1.8:3000/User';//'https://localhost:7217/api/User/'
 
 class userService {
 
@@ -10,7 +10,7 @@ class userService {
         // Se necessário, adicione inicializações aqui
       }
 
-  async addUser(user: User): Promise<boolean> {
+  async addUser(user: User): Promise<{ success: boolean, message: string }> {
     try {
     const response = await axios.post(`${BASE_URL}`, user);
     
@@ -30,12 +30,11 @@ class userService {
         },
     });
     
-      return uploadResponse.status === 201; // Retorna true se o usuário foi adicionado com sucesso
+      return { success: uploadResponse.status === 201, message: 'Usuário adicionado com sucesso!' };
     
     } catch (error) {
-      console.error('Erro ao adicionar usuário:', error);
-      console.log('erro');
-      return false; // Retorna false em caso de erro
+      console.error('Usuário adicionado com sucesso!', error);
+    return { success: false, message: 'Usuário adicionado com sucesso!' };
     }
   }
 

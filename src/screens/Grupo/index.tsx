@@ -1,6 +1,6 @@
 import React, { useEffect, useState , Fragment} from 'react';
 import { StackTypes } from '../../routes/stack';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { FlatList, Text, View, Image, StyleSheet, ImageSourcePropType, Button, TouchableOpacity, useWindowDimensions } from 'react-native';
 import GroupService   from '../../services/groupService';
 import {Group} from '../../types/group';
@@ -12,7 +12,7 @@ import Loading from '../../components/Loading';
 
 
 // Importe as imagens e atribua-as diretamente a uma variável
-const mascoteImage = require('../../assets/mascoteImage.png');
+const mascoteImage = require('../../assets/avatar.jpg');
 
 // Grupo.tsx
 
@@ -32,7 +32,7 @@ const Grupo = () => {
       };
   
       fetchGroup();
-    }, []);
+    }, [useIsFocused, navigation]);
   
     const handleEditGroup = (groupId: number) => {
       navigation.navigate('DetailsG', { groupId });
@@ -70,8 +70,8 @@ const Grupo = () => {
       const renderSkeleton = () => (
         <ContentLoader
         viewBox={`0 0 ${width} ${height}`}
-        backgroundColor='#333'
-        foregroundColor='#999'
+        backgroundColor='#E2001A'
+        foregroundColor='#FF6F00'
       >
       
           {/* Coloque aqui o layout do esqueleto */}
@@ -92,10 +92,11 @@ const Grupo = () => {
       // Caso contrário, renderize o conteúdo real
      
     return (
+      
     <View>
-      <TouchableOpacity style={styles.add} onPress={() => AddGroup()}>
-        <Feather style={styles.add1} name="plus-circle" size={24} color="black" />
-      </TouchableOpacity>
+      {/* <View style={styles.add}>
+        <Text style={styles.title}>Seus Grupos</Text>
+      </View> */}
       <FlatList
         data={groups}
         renderItem={renderItem}
@@ -108,15 +109,39 @@ const Grupo = () => {
   
 
 const styles = StyleSheet.create({
+  
+  tt: {
+    fontSize: 16,
+    padding: 5,
+    color: '#007BFF', 
+    fontWeight: 'bold', 
+    fontFamily: 'Arial', 
+    textAlign: 'left', 
+  },
+  title:{
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 2,
+    paddingHorizontal: 120,
+    paddingBottom: 9,
+    width: '100%', 
+    color: '#E2001A'
+  },
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
     paddingTop:10
   },
   settings:{
-    color: '#007BFF',
+    color: '#FF6F00',
     paddingRight: 10,
     marginTop: 10,
+    opacity: 0.5
+  },
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   item: {
     flexDirection: 'row',

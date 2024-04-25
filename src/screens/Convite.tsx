@@ -13,10 +13,13 @@ export default function Convite() {
 
     //<ImageBackground source={require('./src/assets/back.png')} style={[styles.background]}>
 
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'  }}>
+       {Image && <Image style={styles.avatarContainer} source={require('../assets/cute.jpg')}  />}
+
         <View style={{ alignItems: 'center' }}>
+        <Text style={styles.text1}>Olá,</Text>
           <Text style={styles.text}>Voce foi convidado para o grupo teste1, pelo h1</Text>
+        
         </View>
 
         <TouchableOpacity style={styles.button}>
@@ -33,28 +36,57 @@ export default function Convite() {
 }
 
 const styles = StyleSheet.create({
+  avatarContainer: {
+    width: 200,
+    height: 200,
+    borderRadius: 100, // half of width and height for a circle
+    backgroundColor: 'lightgray',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 25,
+   // borderWidth: 2,
+    //borderColor:'#E2001A' ,
+    padding: 15,
+  },
+  avatarImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // half of width and height for a circle
+    
+  },
   background: {
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
     //opacity: 0.9,
+    backgroundColor: '#E2001A',
   },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 1,
+    backgroundColor: '#E2001A',
   },
 
     text: {
-      fontSize: 20,
-      padding: 5,
-      color: '#007BFF', 
+      fontSize: 21,
+      paddingHorizontal: 0,
+      color: '#E2001A', 
       fontWeight: 'bold', 
       fontFamily: 'Arial', 
       textAlign: 'left', 
+    paddingTop:20
     
-    
+  },
+  text1: {
+    fontSize: 25,
+    paddingHorizontal: 0,
+    color: '#E2001A', 
+    fontWeight: 'bold', 
+    fontFamily: 'Arial', 
+    textAlign: 'left', 
+  paddingTop:40
   },
   textInput: {
     borderColor: theme.colors.teste,
@@ -66,7 +98,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   button: {
-    backgroundColor: theme.colors.teste,
+    backgroundColor: '#FF6F00',
     width: 150,
       height:40,
       borderRadius: 8,
@@ -74,12 +106,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       borderWidth: 1,
-      borderColor: theme.colors.teste,
+      borderColor: '#FF6F00',
       marginBottom: 10,
-      marginTop:30,
+      marginTop:60,
   },
   button1: {
-    backgroundColor: theme.colors.red,
+    backgroundColor:'#E2001A',
     width: 150,
       height:40,
       borderRadius: 8,
@@ -87,7 +119,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       borderWidth: 1,
-      borderColor: theme.colors.red,
+      borderColor: '#E2001A',
       marginBottom: 10,
       marginTop:30,
   },

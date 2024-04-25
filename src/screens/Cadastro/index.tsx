@@ -46,18 +46,18 @@ const Cadastro = () => {
             photo: image
         };
 
-          const userAdded = await userService.addUser(user);
-          if (userAdded) {
-              console.log('Usuário adicionado com sucesso!');
-             // alert('Usuário adicionado com sucesso!');
-              navigation.navigate('Login');
-          } else {
-            //alert('Erro ao adicionar usuário');
-              console.log('Erro ao adicionar usuário');
-              navigation.navigate('Login');
-          }
+        const { success, message } = await userService.addUser(user);
+        if (success) {
+          console.log(message);
+          alert(message);
+          navigation.navigate('Login');
+        } else {
+          alert(message);
+         // console.log(message);
+          navigation.navigate('Login');
+        }
       } catch (error) {
-          console.error('Error uploading image:', error);
+        console.error('Error uploading image:', error);
       }
   };
 
@@ -68,26 +68,27 @@ return (
   
        
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    
-  <Text style={styles.text}>Nome:</Text>
+    <Text style={styles.title}>Cadastre-se</Text>
+    {image && <Image style={styles.avatarContainer} source={{ uri: image }}  />}
+  <Text style={styles.text}>Nome</Text>
   <InputLogin  
             placeholder="Login"
             onChangeText={setName}
             value={name}
           />
-  <Text style={styles.text}>E-mail:</Text>
+  <Text style={styles.text}>E-mail</Text>
   <InputEmail  
             placeholder="E-mail"
             onChangeText={setEmail}
             value={login}
           />
-  <Text style={styles.text}>Senha:</Text>
+  <Text style={styles.text}>Senha</Text>
   <PassWordInput
           placeholder="Password"
           onChangeText={setPassword}
           value={password}
         />
-        <Text style={styles.text}>Confirmar Senha:</Text>
+        <Text style={styles.text}>Confirmar Senha</Text>
   <PassWordInput2
           placeholder="Password"
           onChangeText={setPassword2}
@@ -95,9 +96,9 @@ return (
         />
   <CustomButton title='Selecionar Imagem' onPress={pickImage}></CustomButton>
   
-  {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 , marginBottom: 10}} />}
+  {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 , marginBottom: 10}} />} */}
   
-  <CustomButton title='Upload' onPress={handleUpload}></CustomButton>
+  <CustomButton title='Confirmar' onPress={handleUpload}></CustomButton>
 </View>
         
    
@@ -108,12 +109,40 @@ return (
 const styles = StyleSheet.create({
  
   text: {
-    fontSize: 16,
+    fontSize: 20,
     padding: 5,
-    color: '#007BFF', 
+    color: '#E2001A', 
     fontWeight: 'bold', 
     fontFamily: 'Arial', 
     textAlign: 'left', 
-  }
+  },
+  title:{
+    fontSize: 50,
+    fontWeight: 'bold',
+    marginBottom: 8, 
+
+    paddingHorizontal: 80,
+    paddingBottom: 30,
+    width: '100%', // Us
+    color: '#E2001A'
+  },
+  avatarContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // half of width and height for a circle
+    backgroundColor: 'lightgray',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    borderWidth: 2,
+    borderColor:'#E2001A' ,
+    padding: 15,
+  },
+  avatarImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // half of width and height for a circle
+    
+  },
 });
 export default Cadastro;

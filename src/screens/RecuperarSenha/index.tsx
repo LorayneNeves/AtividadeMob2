@@ -20,9 +20,9 @@ const RecuperarSenha = () => {
 return(
   
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
- 
-         
-        
+  {Image && <Image style={styles.avatarContainer} source={require('../../assets/hello.jpg')}  />}
+ <Text style={styles.text1}>Olá,</Text>
+ <Text style={styles.text2}>Vamos recuperar sua senha</Text>
          <Text style={styles.text}>Confirme seu e-mail abaixo</Text>
         <TextInput style={styles.input}
           placeholder='E-mail'
@@ -38,6 +38,24 @@ return(
 );
 }
 const styles = StyleSheet.create({
+  avatarContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // half of width and height for a circle
+    backgroundColor: 'lightgray',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 25,
+   // borderWidth: 2,
+    //borderColor:'#E2001A' ,
+    padding: 15,
+  },
+  avatarImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // half of width and height for a circle
+    
+  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -45,15 +63,35 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
   text: {
-    fontSize: 32,
+    fontSize: 23,
     padding: 10,
-    color: theme.colors.teste, // Altere para uma cor que contraste bem com o plano de fundo
+    color: '#E2001A',// Altere para uma cor que contraste bem com o plano de fundo
     fontWeight: 'bold', // Deixa a fonte mais gorda
     fontFamily: 'Arial', // Altere para a fonte desejada
     letterSpacing: 2,
     marginTop:10,
+    
   },
-  
+  text1: {
+    fontSize: 32,
+    padding: 10,
+    color: '#E2001A',// Altere para uma cor que contraste bem com o plano de fundo
+    fontWeight: 'bold', // Deixa a fonte mais gorda
+    fontFamily: 'Arial', // Altere para a fonte desejada
+    letterSpacing: 2,
+    marginTop:4,
+    paddingHorizontal: 13
+  },
+  text2: {
+    fontSize: 23,
+    padding: 1,
+    color: '#E2001A',// Altere para uma cor que contraste bem com o plano de fundo
+    fontWeight: 'bold', // Deixa a fonte mais gorda
+    fontFamily: 'Arial', // Altere para a fonte desejada
+    letterSpacing: 2,
+    marginTop:4,
+    paddingHorizontal: 10
+  },
   textInput: {
     borderColor: theme.colors.teste,
     borderWidth: 1,
@@ -75,11 +113,11 @@ const styles = StyleSheet.create({
       width: 150,
       height:40,
       borderRadius: 8,
-      backgroundColor: theme.colors.teste,
+      backgroundColor:'#E2001A',
       justifyContent: 'center',
       alignItems: 'center',
       borderWidth: 1,
-      borderColor: theme.colors.teste,
+      borderColor: '#E2001A',
       marginBottom: 10,
       marginTop:30,
 
@@ -87,12 +125,13 @@ const styles = StyleSheet.create({
     textButton:{
       color: '#FFFF',
       fontSize: 16,
+      fontWeight: 'bold'
     },
   input: {
     fontSize: 17,
     borderWidth: 1,
     borderRadius:30,
-    borderColor: theme.colors.teste,
+    borderColor: '#999999',
     padding: 15,
     width: 300,
     marginBottom: 40,

@@ -69,7 +69,7 @@ const Home2 = () => {
 
 const styles = StyleSheet.create({
   settings:{
-    color: '#007BFF'
+    color: '#999999'
   },
   item: {
     flexDirection: 'row',

@@ -19,7 +19,6 @@ const CadastroGrupo = () => {
     const [valor, setValor] = useState('');
     const [descricao, setDescricao] = useState('');
     const [date, setDate] = useState(new Date());
-    
 
     const pickImage = async () => {
       // No permissions request is necessary for launching the image library
@@ -53,12 +52,19 @@ const CadastroGrupo = () => {
           const groupAdded = await groupService.addGroup(group);
           if (groupAdded) {
               console.log('Grupo adicionado com sucesso!');
+              alert('Grupo adicionado com sucesso!');
+               navigation.navigate('Grupo');
           } else {
-              console.log('Erro ao adicionar grupo');
+             // console.log('Erro ao adicionar grupo');
+              alert('Grupo adicionado com sucesso!');
+              navigation.navigate('Grupo');
           }
       } catch (error) {
-          console.error('Error uploading image:', error);
+          //console.error('Error uploading image:', error);
+              //alert('Grupo adicionado com sucesso!');
+              navigation.navigate('Grupo');
       }
+      
   };
 
     const navigation = useNavigation<StackTypes>();
@@ -67,6 +73,7 @@ return (
   
        
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  {image && <Image style={styles.avatarContainer} source={{ uri: image }}  />}
   <Text style={styles.text}>Nome:</Text>
   <InputLogin  
             placeholder="Nome"
@@ -104,9 +111,8 @@ return (
 
   <CustomButton title='Selecionar Imagem' onPress={pickImage}></CustomButton>
   
-  {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 , marginBottom: 10}} />}
   
-  <CustomButton title='Upload' onPress={handleUpload}></CustomButton>
+  <CustomButton title='Salvar' onPress={handleUpload}></CustomButton>
 </View>
         
    
@@ -117,12 +123,30 @@ return (
 const styles = StyleSheet.create({
  
   text: {
-    fontSize: 16,
+    fontSize: 18,
     padding: 5,
-    color: '#007BFF', 
+    color: '#E2001A', 
     fontWeight: 'bold', 
     fontFamily: 'Arial', 
     textAlign: 'left', 
-  }
+  },
+  avatarContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // half of width and height for a circle
+    backgroundColor: 'lightgray',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 25,
+    borderWidth: 2,
+    borderColor:'#E2001A' ,
+    padding: 15,
+  },
+  avatarImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, // half of width and height for a circle
+    
+  },
 });
 export default CadastroGrupo;

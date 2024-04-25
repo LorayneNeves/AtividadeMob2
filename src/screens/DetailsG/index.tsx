@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, Image } from 'react-native';
 import GroupService from '../../services/groupService';
 import { Group } from '../../types/group';
 import { StackRouteProp } from '../../routes/stack';
+import * as ImagePicker from 'expo-image-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
-// EditGroup.tsx
+import CustomButton from '../../components/button';
 
 const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
     const { groupId } = route.params;
@@ -16,8 +17,23 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
     const [editedValor, setEditedValor] = useState<string | undefined>(undefined);
     const [editedQuantidade, setEditedQuantidade] = useState<string | undefined>(undefined);
     const [date, setDate] = useState(new Date());
+    const [image, setImage] = useState('');
     const groupService = new GroupService();
-
+    const pickImage = async () => {
+      // No permissions request is necessary for launching the image library
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+  
+      console.log(result);
+  
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
+      }
+    };
 
     useEffect(() => {
       const fetchGroup = async () => {
@@ -60,8 +76,9 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
     }
   
     return (
-      <View>
-        <Text style={styles.textTitle}>Editar Grupo</Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        {image && <Image style={styles.avatarContainer} source={{ uri: image }}  />}
+       
 
         <Text style={styles.text}>Nome</Text>
         <TextInput
@@ -94,7 +111,7 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
                   value={editedDescricao}
                   style={styles.input}
                 />
-                <Text style={styles.text}>Data:</Text>
+                <Text style={styles.text}>Data</Text>
             <DateTimePicker style={styles.date}
                 value={date}
                 mode="date"
@@ -104,7 +121,9 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
                     setDate(currentDate);
                 }}
             />
-        <Button title="Salvar" onPress={handleSave} />
+             
+             <CustomButton title='Selecionar Imagem' onPress={pickImage}></CustomButton>
+        <Button color="#E2001A"title="Salvar" onPress={handleSave} />
       </View>
     );
   };
@@ -115,7 +134,7 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
       fontWeight: 'bold',
       textAlign: 'center',
       marginVertical: 20,
-      color: '#007BFF'
+      color: '#E2001A'
     },
     input: {
       borderWidth: 1,
@@ -125,7 +144,7 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
       fontSize: 16,
       padding: 5,
       marginTop: 5,
-      marginLeft:33,
+     
       color: '#007BFF', 
       fontWeight: 'bold', 
       fontFamily: 'Arial', 
@@ -134,23 +153,31 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
       width: 350,
     },
     text: {
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: 'bold',
-      textAlign: 'left',
-      marginLeft: 40,
-      color: '#007BFF'
+      paddingBottom: 5,
+      color: '#E2001A'
     },
     date:{
-      borderWidth: 6,
-      borderColor: '#ccc',
-      borderRadius: 10,
-      marginBottom: 40,
-      padding: 6,
-      paddingRight: 10,
       marginTop: 8,
-      marginLeft:33,
-      height: 40,
-      width: 90,
+    },
+    avatarContainer: {
+      width: 100,
+      height: 100,
+      borderRadius: 50, // half of width and height for a circle
+      backgroundColor: 'lightgray',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 25,
+      borderWidth: 2,
+      borderColor:'#E2001A' ,
+      padding: 15,
+    },
+    avatarImage: {
+      width: 100,
+      height: 100,
+      borderRadius: 50, // half of width and height for a circle
+      
     }
   });
   

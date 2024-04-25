@@ -14,6 +14,7 @@ import Grupo from '../screens/Grupo';
 import CadastroGrupo from "../screens/CadastroGrupo";
 import { RouteProp } from '@react-navigation/native';
 import RecuperarSenha2 from '../screens/RecuperarSenha2';
+import TabNavigator from '../components/TabNavigator/TabNavigator'
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ type StackNavigation = {
     Details: { userId : number | undefined};
     ExemploEskeleton: undefined;
     DetailsG: { groupId : number | undefined};
+    //TabNavigator: undefined;
 }
 
 export type RootStackParamList = {
@@ -45,6 +47,7 @@ export type RootStackParamList = {
     RecuperarSenha: undefined;
     RecuperarSenha2: undefined;
     DetailsG: { groupId: number};
+   // TabNavigator: undefined;
 };
 
 export type StackTypes = NativeStackNavigationProp<StackNavigation>
@@ -57,17 +60,18 @@ export default function StackComponent(){
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen  name="Login" component={Login}  options={{headerShown: false }}/>
-                <Stack.Screen  name="Home" component={Home} />
-                <Stack.Screen  name="Home2" component={Home2} />
-                <Stack.Screen  name="Grupo" component={Grupo} />
+                <Stack.Screen name="Home" component={Home} options={{headerShown: false }} />
+                <Stack.Screen  name="Home2" component={Home2} options={{headerShown: false }} />
+                <Stack.Screen  name="Grupo" component={TabNavigator} options={{headerShown: false }} />
                 <Stack.Screen  name="DetailsG" component={DetailsG} />
                 <Stack.Screen  name="Details" component={Details}   />
-                <Stack.Screen  name="Cadastro" component={Cadastro}     />
-                <Stack.Screen  name="CadastroGrupo" component={CadastroGrupo}/>
-                <Stack.Screen  name="Convite" component={Convite}     />
+                <Stack.Screen name="Cadastro" component={Cadastro} />
+                <Stack.Screen name="CadastroGrupo" component={CadastroGrupo} />
+                <Stack.Screen  name="Convite" component={Convite}  />
                 <Stack.Screen  name="RecuperarSenha" component={RecuperarSenha} />
                 <Stack.Screen  name="RecuperarSenha2" component={RecuperarSenha2}/>
                 <Stack.Screen  name="ExemploEskeleton" component={ExemploEskeleton}   />
+                <Stack.Screen name="Principal" component={TabNavigator} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
 

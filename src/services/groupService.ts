@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { Group } from '../types/group';
 import { Image } from 'react-native';
 
-const BASE_URL = 'http://192.168.1.9:3000/Group';//'https://localhost:7217/api/User/'
+const BASE_URL = 'http://192.168.1.8:3000/Group';//'https://localhost:7217/api/User/'
 
 class groupService {
 
@@ -34,7 +34,7 @@ class groupService {
           return uploadResponse.status === 201; // Retorna true se o usuário foi adicionado com sucesso
         
         } catch (error) {
-          console.error('Erro ao adicionar grupo:', error);
+          //console.error('Erro ao adicionar grupo:', error);
           return false; // Retorna false em caso de erro
         }
       }

@@ -6,7 +6,7 @@ import CustomButton from '../../components/button';
 import { InputLogin } from '../../components/InputLogin/style';
 import PassWordInput from '../../components/Password';
 import { ContainerLogin } from './style';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image  } from 'react-native';
 
 
 const Login = () => {
@@ -53,9 +53,12 @@ const Login = () => {
  
     return (
  
-      <View style={styles.container}>
+      <View style={styles.container} >
+         {Image && <Image style={styles.avatarContainer} source={require('../../assets/astronaut.jpg')}  />}
+
+          <Text style={styles.title}>Acesse sua conta</Text>
          
-        <ContainerLogin>
+        <ContainerLogin >
           <InputLogin  
             placeholder="Login"
             onChangeText={setLogin}
@@ -67,9 +70,10 @@ const Login = () => {
             onChangeText={setPassword}
             value={password}
           />
-          <CustomButton title='Entrar' onPress={handleLogin}></CustomButton>
+          <CustomButton  title='Entrar' onPress={handleLogin}></CustomButton>
         </ContainerLogin>
-        <View style={styles.buttonContainer}>
+        
+        <View style={styles.buttonContainer} >
           <TouchableOpacity onPress={EqueciSenha}>
             <Text style={styles.resetButton}>Esqueci minha senha</Text>
           </TouchableOpacity>
@@ -85,23 +89,56 @@ const Login = () => {
 
   const styles = StyleSheet.create({
     container: {
-      paddingTop:400
+      paddingTop:150,
+   
     },
+
     buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       marginTop: 20,
       paddingHorizontal: 40,
-      width: '100%', // Usar largura total do container
+      width: '100%', 
+      
     },
     resetButton: {
-      color: 'blue',
-      textDecorationLine: 'underline',
+      color: '#FF6F00',
+      fontWeight: 'bold',
+      
     },
     CadastroButton:{
-      color: 'blue',
-      textDecorationLine: 'underline',
+      color: '#FF6F00',
+      fontWeight: 'bold',
+    },
+    avatarContainer: {
+      marginLeft: 100,
+      width: 200,
+      height: 200,
+      borderRadius: 100, // half of width and height for a circle
+      backgroundColor: 'lightgray',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 25,
+     // borderWidth: 2,
+     // borderColor:'#E2001A' ,
+      padding: 15,
+     
+    },
+    avatarImage: {
+      width: 100,
+      height: 100,
+      borderRadius: 50, // half of width and height for a circle
+      
+    },
+    title:{
+      fontSize: 40,
+      fontWeight: 'bold',
+      marginBottom: 50, 
+      marginTop: 20,
+      paddingHorizontal: 70,
+      paddingBottom: 90,
+      width: '100%', // Us
+      color: '#FF6F00'
     }
-    
   });
 export default Login;

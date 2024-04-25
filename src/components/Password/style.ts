@@ -2,26 +2,23 @@ import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 
 export const Container = styled.View`
-margin-bottom: 16px;
-height: 40px;
-border-color: gray;
-border-radius: 8px;
-border-width: 1px;
-width: 80%;
-flex-direction: row;
-justify-content: space-between;
-
+  margin-bottom: 16px;
+  height: 40px;
+  border-color: gray;
+  border-radius: 8px;
+  border-width: 1px;
+  width: 80%;
+  flex-direction: row;
+  align-items: center; /* Alinhar verticalmente */
 `;
 
 export const InputPassword = styled.TextInput`
-  width: 100%;
+  flex: 1; /* Ocupar todo o espaço disponível */
   height: 40px;
-  margin-bottom: 20px;
   padding-horizontal: 20px;
 `;
 
 export const IconEye = styled(Feather)`
   padding-horizontal: 10px;
-  margin-top: 6px;
-  color: #007BFF;
+  color: #FF6F00;
 `;

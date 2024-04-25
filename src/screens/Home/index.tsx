@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Button, Image, View, Platform, Text, TextInput } from 'react-native';
+import { Button, Image, View, Platform, Text, TextInput, ImageBackground } from 'react-native';
 import { StackTypes } from '../../routes/stack';
 import * as ImagePicker from 'expo-image-picker';
 import UserService   from '../../services/userService';
@@ -31,6 +31,7 @@ const Home = () => {
   };
   
   return (
+    
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <CustomButton title='Home' onPress={goToHome2}></CustomButton>
       <CustomButton title='Grupo' onPress={goToGrupo}></CustomButton>
@@ -41,6 +42,7 @@ const Home = () => {
       {/*  <CustomButton title='Details' onPress={goDatails}></CustomButton>
       <CustomButton title='ExemploEskeleton' onPress={goExemploEskeleton}></CustomButton>*/}
     </View>
+
   );
 
 };

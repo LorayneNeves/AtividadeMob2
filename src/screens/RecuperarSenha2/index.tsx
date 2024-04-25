@@ -6,7 +6,7 @@ import CustomButton from '../../components/button';
 import { InputLogin } from '../../components/InputLogin/style';
 import PassWordInput from '../../components/Password';
 import { ContainerLogin } from './style';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import RecuperarSenha from '../RecuperarSenha';
 
 
@@ -45,8 +45,10 @@ const RecuperarSenha2 = () => {
     return (
  
       <View style={styles.container}>
-        
+          
+
         <ContainerLogin>
+        {Image && <Image style={styles.avatarContainer} source={require('../../assets/joia.png')}  />}
         <Text style={styles.text}>Informe a senha enviada para seu e-mail</Text>
           <InputLogin  
             placeholder="Login"
@@ -69,8 +71,28 @@ const RecuperarSenha2 = () => {
   };
 
   const styles = StyleSheet.create({
+    avatarContainer: {
+      
+      width: 200,
+      height: 200,
+      borderRadius: 100, // half of width and height for a circle
+      backgroundColor: 'lightgray',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 25,
+     // borderWidth: 2,
+     // borderColor:'#E2001A' ,
+      padding: 15,
+     
+    },
+    avatarImage: {
+      width: 100,
+      height: 100,
+      borderRadius: 50, // half of width and height for a circle
+      
+    },
     container: {
-      paddingTop:400
+      paddingTop:370
     },
     buttonContainer: {
       flexDirection: 'row',
@@ -89,13 +111,13 @@ const RecuperarSenha2 = () => {
     },
  
         text: {
-          fontSize: 16,
+          fontSize: 20,
           padding: 20,
-          color: '#007BFF', // Altere para uma cor que contraste bem com o plano de fundo
+          color: '#E2001A', // Altere para uma cor que contraste bem com o plano de fundo
           fontWeight: 'bold', // Deixa a fonte mais gorda
           fontFamily: 'Arial', // Altere para a fonte desejada
           letterSpacing: 1,
-          marginBottom:50,
+          marginBottom:40,
         },
   });
 export default RecuperarSenha2;

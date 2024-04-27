@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { User } from '../types/types';
-import { Image } from 'react-native';
+
 
 const BASE_URL = 'http://192.168.1.8:3000/User';//'https://localhost:7217/api/User/'
 

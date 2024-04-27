@@ -9,6 +9,7 @@ import { WebView } from 'react-native-webview';
 import Button from '../../components/button'
 import { StackTypes } from '../../routes/stack';
 import { useNavigation } from '@react-navigation/native';
+import { InputLogin } from '../../components/InputLogin/style';
 
 const RecuperarSenha = () => {
   
@@ -24,7 +25,7 @@ return(
  <Text style={styles.text1}>Olá,</Text>
  <Text style={styles.text2}>Vamos recuperar sua senha</Text>
          <Text style={styles.text}>Confirme seu e-mail abaixo</Text>
-        <TextInput style={styles.input}
+        <InputLogin
           placeholder='E-mail'
           //onChangeText={(txtIdade) => setIdade(parseInt(txtIdade))}
           />
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Arial', // Altere para a fonte desejada
     letterSpacing: 2,
     marginTop:10,
-    
+    marginBottom: 30
   },
   text1: {
     fontSize: 32,
@@ -127,17 +128,5 @@ const styles = StyleSheet.create({
       fontSize: 16,
       fontWeight: 'bold'
     },
-  input: {
-    fontSize: 17,
-    borderWidth: 1,
-    borderRadius:30,
-    borderColor: '#999999',
-    padding: 15,
-    width: 300,
-    marginBottom: 40,
-    marginTop: 60,
-    backgroundColor: theme.colors.white,
-    color: theme.colors.black
-  },
 });
 export default RecuperarSenha;

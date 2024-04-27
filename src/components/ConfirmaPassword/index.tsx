@@ -28,7 +28,7 @@ const PassWordInput= ({ ...rest } : PasswordProps) => {
       />
      <IconEye             
                 name={iconPass}
-                size={23}                
+                size={20}                
                 onPress={handleChangeIcon}
 
       />

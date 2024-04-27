@@ -102,12 +102,12 @@ const Login = () => {
       
     },
     resetButton: {
-      color: '#FF6F00',
+      color: '#E2001A',
       fontWeight: 'bold',
       
     },
     CadastroButton:{
-      color: '#FF6F00',
+      color: '#E2001A',
       fontWeight: 'bold',
     },
     avatarContainer: {
@@ -138,7 +138,7 @@ const Login = () => {
       paddingHorizontal: 70,
       paddingBottom: 90,
       width: '100%', // Us
-      color: '#FF6F00'
+      color: '#E2001A'
     }
   });
 export default Login;

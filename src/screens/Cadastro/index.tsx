@@ -70,27 +70,25 @@ return (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <Text style={styles.title}>Cadastre-se</Text>
     {image && <Image style={styles.avatarContainer} source={{ uri: image }}  />}
-  <Text style={styles.text}>Nome</Text>
   <InputLogin  
             placeholder="Login"
             onChangeText={setName}
             value={name}
           />
-  <Text style={styles.text}>E-mail</Text>
   <InputEmail  
             placeholder="E-mail"
             onChangeText={setEmail}
             value={login}
           />
-  <Text style={styles.text}>Senha</Text>
-  <PassWordInput
-          placeholder="Password"
+  <PassWordInput 
+          style={styles.text1}
+          placeholder="Senha"
           onChangeText={setPassword}
           value={password}
         />
-        <Text style={styles.text}>Confirmar Senha</Text>
   <PassWordInput2
-          placeholder="Password"
+          style={styles.text1}
+          placeholder="Confirmar senha"
           onChangeText={setPassword2}
           value={password2}
         />
@@ -107,14 +105,21 @@ return (
 
 };
 const styles = StyleSheet.create({
- 
+  text1:{
+    fontSize: 16,
+    padding: 5,
+    color: '#E2001A', 
+    fontFamily: 'Arial', 
+    paddingLeft: 10
+  },
   text: {
-    fontSize: 20,
+    fontSize: 16,
     padding: 5,
     color: '#E2001A', 
     fontWeight: 'bold', 
     fontFamily: 'Arial', 
     textAlign: 'left', 
+    paddingRight:300
   },
   title:{
     fontSize: 50,

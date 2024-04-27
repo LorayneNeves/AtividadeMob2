@@ -4,21 +4,22 @@ import { Feather } from '@expo/vector-icons';
 export const Container = styled.View`
   margin-bottom: 16px;
   height: 40px;
-  border-color: gray;
-  border-radius: 8px;
-  border-width: 1px;
   width: 80%;
-  flex-direction: row;
-  align-items: center; /* Alinhar verticalmente */
+  position: relative;
 `;
 
 export const InputPassword = styled.TextInput`
   flex: 1; /* Ocupar todo o espaço disponível */
   height: 40px;
   padding-horizontal: 20px;
+  border-bottom-width: 1px;
+  border-bottom-color: #E2001A;
+  paddingLeft: 10px;
 `;
 
 export const IconEye = styled(Feather)`
-  padding-horizontal: 10px;
-  color: #FF6F00;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #E2001A;
 `;

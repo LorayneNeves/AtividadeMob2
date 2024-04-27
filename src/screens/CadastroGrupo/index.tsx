@@ -74,31 +74,31 @@ return (
        
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
   {image && <Image style={styles.avatarContainer} source={{ uri: image }}  />}
-  <Text style={styles.text}>Nome:</Text>
+  
   <InputLogin  
             placeholder="Nome"
             onChangeText={setName}
             value={name}
           />
-  <Text style={styles.text}>Quantidade Max:</Text>
+  
   <InputLogin  
             placeholder="Quantidade"
             onChangeText={setQuantidade}
             value={quantidade}
           />
-          <Text style={styles.text}>Valor:</Text>
+          
   <InputLogin  
             placeholder="Valor"
             onChangeText={setValor}
             value={valor}
           />
-          <Text style={styles.text}>Descrição:</Text>
+          
   <InputLogin  
             placeholder="Descrição"
             onChangeText={setDescricao}
             value={descricao}
           />
-         <Text style={styles.text}>Data:</Text>
+        
             <DateTimePicker
                 value={date}
                 mode="date"

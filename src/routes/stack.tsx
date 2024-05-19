@@ -15,10 +15,11 @@ import CadastroGrupo from "../screens/CadastroGrupo";
 import { RouteProp } from '@react-navigation/native';
 import RecuperarSenha2 from '../screens/RecuperarSenha2';
 import TabNavigator from '../components/TabNavigator/TabNavigator'
-
+import Splash from '../screens/Splash';
 const Stack = createNativeStackNavigator();
 
 type StackNavigation = {
+    Splash : undefined;
     Home : undefined;
     Home2 : undefined;
     Grupo : undefined;
@@ -35,6 +36,7 @@ type StackNavigation = {
 }
 
 export type RootStackParamList = {
+    Splash : undefined;
     Home: undefined;
     Home2: undefined;
     Grupo : undefined;
@@ -58,7 +60,8 @@ export type StackRouteProp<ScreenName extends keyof RootStackParamList> = RouteP
 export default function StackComponent(){
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
+            <Stack.Navigator initialRouteName="Splash">
+            <Stack.Screen  name="Splash" component={Splash}  options={{headerShown: false }}/>
                 <Stack.Screen  name="Login" component={Login}  options={{headerShown: false }}/>
                 <Stack.Screen name="Home" component={Home} options={{headerShown: false }} />
                 <Stack.Screen  name="Home2" component={Home2} options={{headerShown: false }} />

@@ -2,14 +2,24 @@ import axios, { AxiosResponse } from 'axios';
 import { Group } from '../types/group';
 import { Image } from 'react-native';
 
-const BASE_URL = 'http://192.168.1.8:3000/Group';//'https://localhost:7217/api/User/'
+const BASE_URL = 'http://192.168.1.5:3000/Group';//'https://localhost:7217/api/User/'
 
 class groupService {
 
     constructor() {
         // Se necessário, adicione inicializações aqui
       }
-
+     
+      async deleteGroup(groupId: number): Promise<boolean> {
+        try {
+          const response = await axios.delete(`${BASE_URL}/${groupId}`);
+          return response.status === 200; // Retorna true se o grupo foi excluído com sucesso
+        } catch (error) {
+          console.error('Erro ao excluir grupo:', error);
+          return false; // Retorna false em caso de erro
+        }
+      }
+      
       async addGroup(group: Group): Promise<boolean> {
         try {
         const response = await axios.post(`${BASE_URL}`, group);

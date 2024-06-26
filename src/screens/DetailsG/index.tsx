@@ -6,6 +6,9 @@ import { StackRouteProp } from '../../routes/stack';
 import * as ImagePicker from 'expo-image-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomButton from '../../components/button';
+import { InputGrupo } from '../../components/InputGrupo/style';
+import { Alert } from 'react-native';
+import { TextInputMask } from 'react-native-masked-text';
 
 const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
     const { groupId } = route.params;
@@ -70,6 +73,17 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
         // Tratar erro
       }
     };
+    const handleDelete = async (groupId: number) => {
+      const deleted = await groupService.deleteGroup(groupId);
+      if (deleted) {
+        alert('Grupo excluído com sucesso');
+        // Faça qualquer outra ação necessária após a exclusão
+      } else {
+        alert('Erro ao excluir grupo');
+        // Tratar erro, se necessário
+      }
+    };
+    
   
     if (!group) {
       return <Text>Carregando...</Text>;
@@ -81,36 +95,45 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
        
 
         <Text style={styles.text}>Nome</Text>
-        <TextInput
+        <InputGrupo
           placeholder={`(${group?.name || 'Nome'})`}
           onChangeText={setEditedName}
           value={editedName}
           style={styles.input}
         />
         <Text style={styles.text}>Quantidade</Text>
-        <TextInput
+        <InputGrupo
 
           placeholder={`(${group?.quantidade || 'Quantidade'})`}
           onChangeText={setEditedQuantidade}
           value={editedQuantidade}
           style={styles.input}
         />
-<Text style={styles.text}>Valor</Text>
-        <TextInput
-
-        placeholder={`(${group?.valor || 'Valor'})`}
-        onChangeText={setEditedValor}
-        value={editedValor}
-        style={styles.input}
-        />
 <Text style={styles.text}>Descrição</Text>
-        <TextInput
+        <InputGrupo
 
                   placeholder={`(${group?.descricao || 'Descrição'})`}
                   onChangeText={setEditedDescricao}
                   value={editedDescricao}
                   style={styles.input}
                 />
+      <Text style={styles.text}>Valor</Text>
+      <TextInputMask
+       placeholder={`(${group?.valor || 'Valor'})`}
+        style={styles.inputValor}
+        type={'money'}
+        options={{
+          precision: 2,
+          separator: ',',
+          delimiter: '.',
+          unit: 'R$',
+          suffixUnit: ''
+        }}
+        value={editedValor}
+        onChangeText={setEditedValor}
+      />
+        
+    
                 <Text style={styles.text}>Data</Text>
             <DateTimePicker style={styles.date}
                 value={date}
@@ -124,6 +147,7 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
              
              <CustomButton title='Selecionar Imagem' onPress={pickImage}></CustomButton>
         <Button color="#E2001A"title="Salvar" onPress={handleSave} />
+        
       </View>
     );
   };
@@ -137,17 +161,10 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
       color: '#E2001A'
     },
     input: {
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 10,
       marginBottom: 40,
       fontSize: 16,
       padding: 5,
-      marginTop: 5,
-     
-      color: '#007BFF', 
-      fontWeight: 'bold', 
-      fontFamily: 'Arial', 
+      marginTop: 5, 
       textAlign: 'left', 
       height: 40,
       width: 350,
@@ -156,7 +173,8 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
       fontSize: 18,
       fontWeight: 'bold',
       paddingBottom: 5,
-      color: '#E2001A'
+      color: '#E2001A',
+      marginRight: 10,
     },
     date:{
       marginTop: 8,
@@ -177,8 +195,22 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
       width: 100,
       height: 100,
       borderRadius: 50, // half of width and height for a circle
-      
-    }
+    },
+    label: {
+      fontSize: 18,
+      marginBottom: 10
+    },
+    inputValor: {
+      width: '50%',
+      height: 40,
+      borderWidth: 1,
+      borderColor: '#E2001A',
+      borderRadius: 5,
+      paddingHorizontal: 10,
+      marginBottom: 20,
+      marginRight: 12,
+      marginTop: 20
+    },
   });
   
   export default DetailsG;

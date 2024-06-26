@@ -7,17 +7,17 @@ import { InputLogin } from '../../components/InputLogin/style';
 import PassWordInput from '../../components/Password';
 import { ContainerLogin } from './style';
 import { View, Text, TouchableOpacity, StyleSheet, Image  } from 'react-native';
-
+// import { useAuth } from '../../provider/AuthProvider';
 
 const Login = () => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [usernameError, setUsernameError] = useState(false);
-  
+
     const userService = new UserService();
     
     const navigation = useNavigation<StackTypes>();
-
+    // const { setUser } = useAuth();
     const EqueciSenha = () => {
       // Lógica para lidar com a edição do usuário
       navigation.navigate('RecuperarSenha');

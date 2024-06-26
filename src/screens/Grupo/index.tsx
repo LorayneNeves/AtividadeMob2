@@ -37,16 +37,19 @@ const Grupo = () => {
     const handleEditGroup = (groupId: number) => {
       navigation.navigate('DetailsG', { groupId });
     };
-    const AddGroup = () => {
-        navigation.navigate('CadastroGrupo');
+    
+    const handleSorteioGroup = () => {
+        navigation.navigate('SorteioGrupo');
       };
     const renderItem = ({ item, index }: { item: Group, index: number }) => (
 
         <View style={styles.item}>
             <Image source={mascoteImage} style={styles.photo}   resizeMode="contain" />
+            <TouchableOpacity onPress={() => handleSorteioGroup()}>
             <View style={styles.userInfo}>
                 <Text style={styles.userInfoText}>{item.name}</Text>
             </View>
+            </TouchableOpacity>
             <TouchableOpacity onPress={() => handleEditGroup(item.id)}>
                 <Feather style={styles.settings} name="settings" size={24} color="black"/>
             </TouchableOpacity>

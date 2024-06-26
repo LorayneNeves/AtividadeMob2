@@ -14,7 +14,7 @@ import PassWordInput2 from '../../components/ConfirmaPassword';
 
 
 const Cadastro = () => {
-  const [login, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
     const [image, setImage] = useState('');
     const [name, setName] =  useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -42,7 +42,9 @@ const Cadastro = () => {
       try {
         const user: User = {
             username: name,
-            password: password, // Defina a senha como necessário
+            email: email,
+            password: password, 
+            passwordConfirm: password2,// Defina a senha como necessário
             photo: image
         };
 
@@ -71,14 +73,14 @@ return (
     <Text style={styles.title}>Cadastre-se</Text>
     {image && <Image style={styles.avatarContainer} source={{ uri: image }}  />}
   <InputLogin  
-            placeholder="Login"
+            placeholder="Nome"
             onChangeText={setName}
             value={name}
           />
   <InputEmail  
             placeholder="E-mail"
             onChangeText={setEmail}
-            value={login}
+            value={email}
           />
   <PassWordInput 
           style={styles.text1}

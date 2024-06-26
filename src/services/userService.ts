@@ -2,45 +2,54 @@ import axios, { AxiosResponse } from 'axios';
 import { User } from '../types/types';
 
 
-const BASE_URL = 'http://192.168.1.8:3000/User';//'https://localhost:7217/api/User/'
+const BASE_URL = 'http://192.168.1.5:3000/User'; //'http://192.168.1.8:3000/User' 'https://192.168.1.5:7038/api/usuario/'
+
+const api = axios.create({
+  baseURL: BASE_URL,
+  timeout: 30000, // Aumentar para 30 segundos
+  headers: {'Content-Type': 'application/json'}
+});
+
 
 class userService {
-
-    constructor() {
-        // Se necessário, adicione inicializações aqui
-      }
+  constructor() {
+    // Se necessário, adicione inicializações aqui
+  }
 
   async addUser(user: User): Promise<{ success: boolean, message: string }> {
     try {
-    const response = await axios.post(`${BASE_URL}`, user);
-    
-    const formData = new FormData();
-    formData.append('username', user.username);
-    formData.append('password', user.password);
+      // Usar a instância configurada de axios
+      const response = await api.post('/', user);
+      
+      const formData = new FormData();
+      formData.append('username', user.username);
+      formData.append('email', user.email);
+      formData.append('password', user.password);
+      formData.append('passwordConfirm,', user.passwordConfirm);
 
-    const responsePhoto = await fetch(user.photo);
+      const responsePhoto = await fetch(user.photo);
+      const blob = await responsePhoto.blob();
+      formData.append('photo', blob, 'photo.jpg');
 
-    const blob = await responsePhoto.blob();
-
-    formData.append('photo', blob, 'photo.jpg');
-
-    const uploadResponse = await axios.post(BASE_URL + '/addUser', formData, {
+      // Certifique-se de que a URL para o upload da foto está correta
+      const uploadResponse = await api.post('/addUser', formData, {
         headers: {
-            'Content-Type': 'multipart/form-data',
+          'Content-Type': 'multipart/form-data',
         },
-    });
-    
+      });
+
       return { success: uploadResponse.status === 201, message: 'Usuário adicionado com sucesso!' };
-    
+
     } catch (error) {
-      console.error('Usuário adicionado com sucesso!', error);
-    return { success: false, message: 'Usuário adicionado com sucesso!' };
+      console.error('Erro ao adicionar usuário:', error);
+      return { success: false, message: 'Erro ao adicionar usuário.' };
     }
   }
 
-  async validateUser(username: string, password: string): Promise<boolean> {
+
+  async validateUser(email: string, password: string): Promise<boolean> {
     try {
-        const response: AxiosResponse<User[]> = await axios.get(`${BASE_URL}?username=${username}&password=${password}`);
+        const response: AxiosResponse<User[]> = await axios.get(`${BASE_URL}?username=${email}&password=${password}`);
         //na aplicação de vocês não retorna array não e o metodo sera um post que retorna um unico usuario.
         if (response.data.length === 0) {
           return false;
@@ -59,7 +68,7 @@ class userService {
         return response.data;
     } catch (error) {
         console.error('Erro ao buscar usuário pelo ID:', error);
-        return { id: 0, username: '', password: '' } ;
+        return { id: 0, email: '', username: '', password: '', passwordConfirm: '', photo:'' } ;
     }
 
 }

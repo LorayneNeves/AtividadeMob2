@@ -10,6 +10,7 @@ import CustomButton from '../../components/button';
 import { InputLogin } from '../../components/InputLogin/style';
 import PassWordInput from '../../components/Password';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { TextInputMask } from 'react-native-masked-text';
 
 const CadastroGrupo = () => {
   
@@ -86,28 +87,37 @@ return (
             onChangeText={setQuantidade}
             value={quantidade}
           />
-          
-  <InputLogin  
-            placeholder="Valor"
-            onChangeText={setValor}
-            value={valor}
-          />
-          
+
   <InputLogin  
             placeholder="Descrição"
             onChangeText={setDescricao}
             value={descricao}
           />
+      <TextInputMask
+      placeholder='Digite o valor'
+        style={styles.input}
+        type={'money'}
+        options={{
+          precision: 2,
+          separator: ',',
+          delimiter: '.',
+          unit: 'R$',
+          suffixUnit: ''
+        }}
+        value={valor}
+        onChangeText={setValor}
+      />
+
         
-            <DateTimePicker
-                value={date}
-                mode="date"
-                display="default"
-                onChange={(event, selectedDate) => {
-                    const currentDate = selectedDate || date;
-                    setDate(currentDate);
-                }}
-            />
+      <DateTimePicker
+        value={date}
+        mode="date"
+        display="default"
+        onChange={(event, selectedDate) => {
+          const currentDate = selectedDate || date;
+          setDate(currentDate);
+         }}
+      />
 
   <CustomButton title='Selecionar Imagem' onPress={pickImage}></CustomButton>
   
@@ -121,7 +131,6 @@ return (
 
 };
 const styles = StyleSheet.create({
- 
   text: {
     fontSize: 18,
     padding: 5,
@@ -133,7 +142,7 @@ const styles = StyleSheet.create({
   avatarContainer: {
     width: 100,
     height: 100,
-    borderRadius: 50, // half of width and height for a circle
+    borderRadius: 50, 
     backgroundColor: 'lightgray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -145,8 +154,22 @@ const styles = StyleSheet.create({
   avatarImage: {
     width: 100,
     height: 100,
-    borderRadius: 50, // half of width and height for a circle
-    
+    borderRadius: 50, 
+  },
+  label: {
+    fontSize: 18,
+    marginBottom: 10
+  },
+  input: {
+    width: '50%',
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#E2001A',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    marginRight: 122,
+    marginTop: 20
   },
 });
 export default CadastroGrupo;

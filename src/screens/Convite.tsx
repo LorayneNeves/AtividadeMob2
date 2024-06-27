@@ -18,7 +18,7 @@ export default function Convite() {
 
         <View style={{ alignItems: 'center' }}>
         <Text style={styles.text1}>Olá,</Text>
-          <Text style={styles.text}>Voce foi convidado para o grupo teste1, pelo h1</Text>
+          <Text style={styles.text}>Voce foi convidado para o grupo Teste1, pelo H1</Text>
         
         </View>
 

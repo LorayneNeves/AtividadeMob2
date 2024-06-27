@@ -28,9 +28,7 @@ const TabNavigator = () => {
 
                     if (route.name === 'Grupos') {
                         iconName = focused ? 'ios-list-box' : 'ios-list';
-                    } else if (route.name === 'Novo Grupo') {
-                        iconName = focused ? 'ios-add-circle' : 'ios-add';
-                    }
+                    } 
                     else if (route.name === 'Logoff'){
                         iconName = focused ? 'ios-exit' : 'ios-exit-outline';
                     }
@@ -57,12 +55,10 @@ const TabNavigator = () => {
         >
             
             <Tab.Screen name="Grupos" component={Grupo} />
-            <Tab.Screen name="Novo Grupo" component={Cadastro} />
             <Tab.Screen name="Notificações" component={Convite} />
             <Tab.Screen name="Logoff" component={LogoutScreen} />
         </Tab.Navigator>
     );
 };
-
 
 export default TabNavigator;

@@ -27,7 +27,6 @@ return(
          <Text style={styles.text}>Confirme seu e-mail abaixo</Text>
         <InputLogin
           placeholder='E-mail'
-          //onChangeText={(txtIdade) => setIdade(parseInt(txtIdade))}
           />
            <TouchableOpacity style={styles.CadastroButton} onPress={RecuperarSenha2}>
              <Text style={styles.textButton}>Enviar e-mail</Text>

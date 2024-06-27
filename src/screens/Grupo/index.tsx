@@ -26,7 +26,6 @@ const Grupo = () => {
         console.error('Erro ao buscar grupo:', error);
       }
     };
-
     fetchGroup();
   }, [isFocused, navigation]);
 
@@ -127,12 +126,17 @@ const Grupo = () => {
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
       />
+      <TouchableOpacity 
+        style={styles.floatingButton} 
+        onPress={() => navigation.navigate('CadastroGrupo')}
+      >
+        <Feather name="plus" size={24} color="white" />
+      </TouchableOpacity>
     </GestureHandlerRootView>
   );
 };
 
 const styles = StyleSheet.create({
-  
   tt: {
     fontSize: 16,
     padding: 5,
@@ -212,6 +216,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 80,
+  },
+  floatingButton: {
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: '50%', // Centraliza horizontalmente
+    bottom: 20,
+    marginLeft: -30, // Metade da largura do botão para ajustá-lo ao centro
+    backgroundColor: '#E2001A',
+    borderRadius: 30,
+    elevation: 8,
   },
 });
 

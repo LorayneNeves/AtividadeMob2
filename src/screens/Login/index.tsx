@@ -66,7 +66,7 @@ const Login = () => {
           />
           
           <PassWordInput
-            placeholder="Password"
+            placeholder="Senha"
             onChangeText={setPassword}
             value={password}
           />

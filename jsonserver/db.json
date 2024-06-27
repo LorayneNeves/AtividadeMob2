@@ -13,33 +13,23 @@
       "photo": "teste.png"
     },
     {
-      "id": "3",
-      "username": "h3",
-      "password": "321",
-      "photo": "teste.png"
-    },
-    {
-      "id": "64db",
-      "username": "Teste",
-      "password": "password",
-      "photo": "file:///var/mobile/Containers/Data/Application/A1F9F1E6-6843-40EC-A824-000866CEB410/Library/Caches/ExponentExperienceData/@anonymous/my-app-c7373b2b-fd99-4c4c-9414-d9123e60e0f8/ImagePicker/11FE4C45-90EE-4958-A0ED-09DAE4E2799B.jpg"
-    },
-    {
-      "id": "8941",
+      "id": "62d2",
       "username": "Lorayne",
-      "password": "123",
-      "photo": "file:///var/mobile/Containers/Data/Application/A1F9F1E6-6843-40EC-A824-000866CEB410/Library/Caches/ExponentExperienceData/@anonymous/my-app-c7373b2b-fd99-4c4c-9414-d9123e60e0f8/ImagePicker/BD1CA21F-1B97-4DE6-B883-2EF46E2F70DD.jpg"
+      "email": "lorayne3.8neves@gmail.com",
+      "password": "teste123",
+      "passwordConfirm": "teste123",
+      "photo": "file:///var/mobile/Containers/Data/Application/AD411B08-D2AB-4F06-9411-2B813E7F5C23/Library/Caches/ExponentExperienceData/@anonymous/my-app-c7373b2b-fd99-4c4c-9414-d9123e60e0f8/ImagePicker/F41AA2CE-0B60-4A70-B644-5FF299ED865E.jpg"
     }
   ],
   "Group": [
     {
-      "id": "2",
-      "name": "teste2",
-      "quantidade": "2",
-      "valor": "5",
-      "descricao": "teste",
-      "data": "23/04/2024",
-      "photo": "teste.png"
+      "id": "070e",
+      "name": "Grupo",
+      "quantidade": 0,
+      "valor": 0,
+      "descricao": "Teste",
+      "data": "",
+      "photo": "file:///var/mobile/Containers/Data/Application/AD411B08-D2AB-4F06-9411-2B813E7F5C23/Library/Caches/ExponentExperienceData/@anonymous/my-app-c7373b2b-fd99-4c4c-9414-d9123e60e0f8/ImagePicker/153C70E4-D249-4E29-8585-CB9FBAA03A15.jpg"
     }
   ]
 }

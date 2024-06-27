@@ -87,13 +87,7 @@ return (
             onChangeText={setQuantidade}
             value={quantidade}
           />
-
-  <InputLogin  
-            placeholder="Descrição"
-            onChangeText={setDescricao}
-            value={descricao}
-          />
-      <TextInputMask
+          <TextInputMask
       placeholder='Digite o valor'
         style={styles.input}
         type={'money'}
@@ -107,6 +101,14 @@ return (
         value={valor}
         onChangeText={setValor}
       />
+
+  <InputLogin  
+            style={styles.input2}
+            placeholder="Descrição"
+            onChangeText={setDescricao}
+            value={descricao}
+          />
+      
 
         
       <DateTimePicker
@@ -169,6 +171,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 20,
     marginRight: 122,
+    marginTop: 20
+  },
+  input2: {
+    width: '70%',
+    height: 80,
+    borderWidth: 1,
+    borderColor: '#E2001A',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    marginRight: 42,
     marginTop: 20
   },
 });

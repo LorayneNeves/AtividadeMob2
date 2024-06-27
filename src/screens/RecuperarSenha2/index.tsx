@@ -51,13 +51,13 @@ const RecuperarSenha2 = () => {
         {Image && <Image style={styles.avatarContainer} source={require('../../assets/joia.png')}  />}
         <Text style={styles.text}>Informe a senha enviada para seu e-mail</Text>
           <InputLogin  
-            placeholder="Login"
+            placeholder="E-mail"
             onChangeText={setLogin}
             value={login}
           />
           
           <PassWordInput
-            placeholder="Password"
+            placeholder="Senha"
             onChangeText={setPassword}
             value={password}
           />

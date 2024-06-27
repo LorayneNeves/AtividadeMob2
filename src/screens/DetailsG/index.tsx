@@ -73,16 +73,6 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
         // Tratar erro
       }
     };
-    const handleDelete = async (groupId: number) => {
-      const deleted = await groupService.deleteGroup(groupId);
-      if (deleted) {
-        alert('Grupo excluído com sucesso');
-        // Faça qualquer outra ação necessária após a exclusão
-      } else {
-        alert('Erro ao excluir grupo');
-        // Tratar erro, se necessário
-      }
-    };
     
 
     if (!group) {
@@ -111,11 +101,11 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
         />
 <Text style={styles.text}>Descrição</Text>
         <InputGrupo
-
+                  style={styles.input2}
                   placeholder={`(${group?.descricao || 'Descrição'})`}
                   onChangeText={setEditedDescricao}
                   value={editedDescricao}
-                  style={styles.input}
+                 
                 />
       <Text style={styles.text}>Valor</Text>
       <TextInputMask
@@ -209,6 +199,17 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
       paddingHorizontal: 10,
       marginBottom: 20,
       marginRight: 12,
+      marginTop: 20
+    },
+    input2: {
+      width: '70%',
+      height: 80,
+      borderWidth: 1,
+      borderColor: '#E2001A',
+      borderRadius: 5,
+      paddingHorizontal: 10,
+      marginBottom: 20,
+      marginRight: 42,
       marginTop: 20
     },
   });

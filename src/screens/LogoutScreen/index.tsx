@@ -8,20 +8,22 @@ const LogoutScreen = () => {
 
   useEffect(() => {
     const performLogout = async () => {
-      // Limpa o token de usuário ou qualquer outro dado de autenticação armazenado
       await AsyncStorage.removeItem('userToken');
-      
-      // Reinicia a pilha de navegação para a tela de login
+
       navigation.dispatch(StackActions.replace('Login'));
     };
 
-    performLogout();
+    const timeoutId = setTimeout(() => {
+      performLogout();
+    }, 1000); 
+
+    return () => clearTimeout(timeoutId); 
   }, [navigation]);
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <ActivityIndicator size="large" color="#0000ff" />
-      <Text>Logging out...</Text>
+      <ActivityIndicator size="large" color="#E2001A" />
+      <Text>Saindo...</Text>
     </View>
   );
 };

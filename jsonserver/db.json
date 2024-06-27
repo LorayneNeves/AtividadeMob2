@@ -33,15 +33,6 @@
   ],
   "Group": [
     {
-      "id": "1",
-      "name": "teste1",
-      "quantidade": "1",
-      "valor": "3",
-      "descricao": "teste",
-      "data": "23/04/2024",
-      "photo": "teste.png"
-    },
-    {
       "id": "2",
       "name": "teste2",
       "quantidade": "2",
@@ -49,15 +40,6 @@
       "descricao": "teste",
       "data": "23/04/2024",
       "photo": "teste.png"
-    },
-    {
-      "id": "0c7a",
-      "name": "Teste6",
-      "quantidade": 0,
-      "valor": 0,
-      "descricao": "Testeeee",
-      "data": "",
-      "photo": "file:///var/mobile/Containers/Data/Application/A1F9F1E6-6843-40EC-A824-000866CEB410/Library/Caches/ExponentExperienceData/@anonymous/my-app-c7373b2b-fd99-4c4c-9414-d9123e60e0f8/ImagePicker/3130EBF0-5381-44E4-A7F6-8D2C22EF6B32.jpg"
     }
   ]
 }

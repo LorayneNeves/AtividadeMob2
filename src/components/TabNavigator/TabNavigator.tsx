@@ -13,6 +13,7 @@ import { Badge } from 'react-native-elements';
 import { View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import { MaterialIcons } from '@expo/vector-icons';
+import LogoutScreen from '../../screens/LogoutScreen'; 
 const Tab = createBottomTabNavigator();
 
 
@@ -30,7 +31,10 @@ const TabNavigator = () => {
                     } else if (route.name === 'Novo Grupo') {
                         iconName = focused ? 'ios-add-circle' : 'ios-add';
                     }
-
+                    else if (route.name === 'Logoff'){
+                        iconName = focused ? 'ios-exit' : 'ios-exit-outline';
+                    }
+                  
                     return (
                         <View>
                             
@@ -55,6 +59,7 @@ const TabNavigator = () => {
             <Tab.Screen name="Grupos" component={Grupo} />
             <Tab.Screen name="Novo Grupo" component={Cadastro} />
             <Tab.Screen name="Notificações" component={Convite} />
+            <Tab.Screen name="Logoff" component={LogoutScreen} />
         </Tab.Navigator>
     );
 };

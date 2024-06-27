@@ -84,7 +84,7 @@ const DetailsG = ({ route }: { route: StackRouteProp<'DetailsG'> }) => {
       }
     };
     
-  
+
     if (!group) {
       return <Text>Carregando...</Text>;
     }

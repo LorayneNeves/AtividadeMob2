@@ -1,115 +1,135 @@
-import React, { useEffect, useState , Fragment} from 'react';
-import { StackTypes } from '../../routes/stack';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { FlatList, Text, View, Image, StyleSheet, ImageSourcePropType, Button, TouchableOpacity, useWindowDimensions } from 'react-native';
-import GroupService   from '../../services/groupService';
-import {Group} from '../../types/group';
-import butoon from '../../components/button';
-import CustomButton from '../../components/button';
+import React, { useEffect, useState } from 'react';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
+import { FlatList, Text, View, Image, StyleSheet, TouchableOpacity, useWindowDimensions, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import ContentLoader, {Circle, Rect} from 'react-content-loader/native'
-import Loading from '../../components/Loading';
-
-
-// Importe as imagens e atribua-as diretamente a uma variável
-const mascoteImage = require('../../assets/avatar.jpg');
-
-// Grupo.tsx
+import ContentLoader, { Circle, Rect } from 'react-content-loader/native';
+import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
+import GroupService from '../../services/groupService';
+import { Group } from '../../types/group';
+import { StackNavigationProp } from '../../routes/stack';
 
 const Grupo = () => {
-    const [groups, setGroups] = useState<Group[]>([]);
-    const groupService = new GroupService();
-    const navigation = useNavigation<StackTypes>();
-  
-    useEffect(() => {
-      const fetchGroup = async () => {
-        try {
-          const fetchedGroups = await groupService.getAllGroups();
-          setGroups(fetchedGroups);
-        } catch (error) {
-          console.error('Erro ao buscar grupo:', error);
-        }
-      };
-  
-      fetchGroup();
-    }, [useIsFocused, navigation]);
-  
-    const handleEditGroup = (groupId: number) => {
-      navigation.navigate('DetailsG', { groupId });
-    };
-    
-    const handleSorteioGroup = () => {
-        navigation.navigate('SorteioGrupo');
-      };
-    const renderItem = ({ item, index }: { item: Group, index: number }) => (
+  const [groups, setGroups] = useState<Group[]>([]);
+  const [loading, setLoading] = useState(true);
+  const groupService = new GroupService();
+  const navigation = useNavigation<StackNavigationProp<'Grupo'>>();
+  const { height, width } = useWindowDimensions();
+  const isFocused = useIsFocused();
+  const mascoteImage = require('../../assets/avatar.jpg');
 
-        <View style={styles.item}>
-            <Image source={mascoteImage} style={styles.photo}   resizeMode="contain" />
-            <TouchableOpacity onPress={() => handleSorteioGroup()}>
-            <View style={styles.userInfo}>
-                <Text style={styles.userInfoText}>{item.name}</Text>
-            </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleEditGroup(item.id)}>
-                <Feather style={styles.settings} name="settings" size={24} color="black"/>
-            </TouchableOpacity>
-        
-        </View>
-
-    );
-    
-      const [loading, setLoading] = useState(true);
-      const { height , width} = useWindowDimensions();
-    
-      // Simulando um tempo de carregamento
-      useEffect(() => {
-        const timer = setTimeout(() => {
-          setLoading(false);
-        }, 2000); // 2000 milissegundos (2 segundos)
-        return () => clearTimeout(timer);
-      }, []);
-    
-      // Função para renderizar o esqueleto
-      const renderSkeleton = () => (
-        <ContentLoader
-        viewBox={`0 0 ${width} ${height}`}
-        backgroundColor='#E2001A'
-        foregroundColor='#FF6F00'
-      >
-      
-          {/* Coloque aqui o layout do esqueleto */}
-          <Circle cx="36" cy="36" r="36" />      
-          <Rect x="80" y="10" rx="4" ry="4" width={200} height={14} />
-          <Rect x="80" y="30" rx="4" ry="4" width={200} height={14} />
-          <Rect x="80" y="50" rx="4" ry="4" width={200} height={14} />
-          {/* Um exemplo de esqueleto de carregamento */}
-        </ContentLoader>
-      );
-    
-      // Se ainda estiver carregando, exiba o esqueleto
-      if (loading) {
-        return <View style={styles.container}>{renderSkeleton()}</View>
-       // return <Loading />
+  useEffect(() => {
+    const fetchGroup = async () => {
+      try {
+        const fetchedGroups = await groupService.getAllGroups();
+        setGroups(fetchedGroups);
+      } catch (error) {
+        console.error('Erro ao buscar grupo:', error);
       }
-    
-      // Caso contrário, renderize o conteúdo real
-     
-    return (
-      
-    <View>
-      {/* <View style={styles.add}>
-        <Text style={styles.title}>Seus Grupos</Text>
-      </View> */}
+    };
+
+    fetchGroup();
+  }, [isFocused, navigation]);
+
+  const handleEditGroup = (groupId: number) => {
+    navigation.navigate('DetailsG', { groupId });
+  };
+
+  const handleSorteioGroup = () => {
+    navigation.navigate('SorteioGrupo');
+  };
+
+  const handleDeleteGroup = async (groupId: number) => {
+    const confirmed = await new Promise((resolve) => {
+      Alert.alert(
+        "Confirmação",
+        "Tem certeza que deseja excluir este grupo?",
+        [
+          {
+            text: "Cancelar",
+            onPress: () => resolve(false),
+            style: "cancel"
+          },
+          {
+            text: "Excluir",
+            onPress: () => resolve(true),
+            style: "destructive"
+          }
+        ]
+      );
+    });
+
+    if (confirmed) {
+      try {
+        const success = await groupService.deleteGroup(groupId);
+        if (success) {
+          setGroups(groups.filter(group => group.id !== groupId));
+          Alert.alert("Sucesso", "Grupo excluído com sucesso!");
+        } else {
+          Alert.alert("Erro", "Não foi possível excluir o grupo.");
+        }
+      } catch (error) {
+        console.error('Erro ao excluir grupo:', error);
+        Alert.alert("Erro", "Ocorreu um erro ao tentar excluir o grupo.");
+      }
+    }
+  };
+
+  const renderRightActions = (groupId: number) => (
+    <TouchableOpacity style={styles.deleteButton} onPress={() => handleDeleteGroup(groupId)}>
+      <Feather name="trash-2" size={24} color="white" />
+    </TouchableOpacity>
+  );
+
+  const renderItem = ({ item }: { item: Group }) => (
+    <Swipeable renderRightActions={() => renderRightActions(item.id)}>
+      <View style={styles.item}>
+        <Image source={mascoteImage} style={styles.photo} resizeMode="contain" />
+        <TouchableOpacity onPress={handleSorteioGroup}>
+          <View style={styles.userInfo}>
+            <Text style={styles.userInfoText}>{item.name}</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleEditGroup(item.id)}>
+          <Feather style={styles.settings} name="settings" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
+    </Swipeable>
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const renderSkeleton = () => (
+    <ContentLoader
+      viewBox={`0 0 ${width} ${height}`}
+      backgroundColor='#E2001A'
+      foregroundColor='#FF6F00'
+    >
+      <Circle cx="36" cy="36" r="36" />
+      <Rect x="80" y="10" rx="4" ry="4" width={200} height={14} />
+      <Rect x="80" y="30" rx="4" ry="4" width={200} height={14} />
+      <Rect x="80" y="50" rx="4" ry="4" width={200} height={14} />
+    </ContentLoader>
+  );
+
+  if (loading) {
+    return <View style={styles.container}>{renderSkeleton()}</View>;
+  }
+
+  return (
+    <GestureHandlerRootView style={styles.container}>
       <FlatList
         data={groups}
         renderItem={renderItem}
         keyExtractor={item => item.id.toString()}
       />
-    </View>
+    </GestureHandlerRootView>
   );
-}
-
-  
+};
 
 const styles = StyleSheet.create({
   
@@ -187,9 +207,11 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginRight: 10,
   },
-  editButton: {
- 
-
+  deleteButton: {
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
   },
 });
 
